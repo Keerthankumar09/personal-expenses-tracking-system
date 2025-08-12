@@ -1,0 +1,39 @@
+{% extends 'tracker/base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2>Welcome, {{ request.user.username }}</h2>
+
+{% if expenses %}
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Note</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.date }}</td>
+                <td>{{ expense.category }}</td>
+                <td>{{ expense.amount }}</td>
+                <td>{{ expense.note }}</td>
+                <td>
+                    {% if expense.id %}
+                        <a class="btn btn-sm btn-warning" href="{% url 'edit_expense' expense.id %}">Edit</a>
+                        <a class="btn btn-sm btn-danger" href="{% url 'delete_expense' expense.id %}">Delete</a>
+                    {% else %}
+                        <span class="text-muted">Invalid</span>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No expenses recorded yet.</p>
+{% endif %}
+{% endblock %}

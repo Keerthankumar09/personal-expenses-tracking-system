@@ -1,0 +1,4 @@
+-- SQLBook: Code
+SELECT * FROM tracker_expense;
+
+-- SQLBook: Code

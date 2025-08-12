@@ -1,0 +1,13 @@
+{% extends 'tracker/base.html' %}
+{% block title %}Edit Expense{% endblock %}
+{% block content %}
+<h2>Edit Expense</h2>
+<form method="POST">
+    {% csrf_token %}
+    <input type="number" name="amount" class="form-control mb-2" value="{{ expense.amount }}" required>
+    <input type="text" name="category" class="form-control mb-2" value="{{ expense.category }}" required>
+    <input type="text" name="note" class="form-control mb-2" value="{{ expense.note }}">
+    <input type="date" name="date" class="form-control mb-3" value="{{ expense.date|date:'Y-m-d' }}" required>
+    <button class="btn btn-primary" type="submit">Update</button>
+</form>
+{% endblock %}
